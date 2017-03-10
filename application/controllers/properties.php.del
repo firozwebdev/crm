@@ -1,0 +1,27 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Properties extends CI_Controller {
+
+	public function index()
+	{
+        if(!$this->session->userdata('logged_in')) {
+            $this->load->view('account/login');
+        }
+        else {
+            $data = array(
+				'rows'=>$this->property_model->get_properties() );
+		    $this->load->view('property/index',$data);
+        }
+	}
+    public function claims()
+    {
+        if(!$this->session->userdata('logged_in')) {
+            $this->load->view('account/login');
+        }
+        else {
+            $data = array(
+                'claims'=>$this->claims_model->getClaims() );
+            $this->load->view('property/claims',$data);
+        }
+    }
+} 

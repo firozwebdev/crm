@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Logs :: SClaim</title>
+    <?php include( 'inc/header.php' ); ?>
+    <style>
+        .form-horizontal .controls {
+            margin-left: 180px;
+        }
+    </style>
+</head>
+
+<body>
+<!-- start: Header -->
+<header class="navbar">
+    <div class="container">
+
+        <? include('inc/top.adjust.php');?>
+
+    </div>
+</header>
+<!-- end: Header -->
+
+<div class="container">
+    <div class="row">
+
+        <!-- start: Main Menu -->
+        <div id="sidebar-left" class="col-lg-2 col-sm-1 ">
+
+            <div class="sidebar-nav nav-collapse collapse navbar-collapse">
+                <? include( 'inc/sidenav.adjust.php' ); ?>
+				</div>
+									<a href="/index.php#" id="main-menu-min" class="full visible-md visible-lg"></a>
+							</div>
+			<!-- end: Main Menu -->
+						
+				<!-- start: Content -->
+				<div id="content" class="col-lg-10 col-sm-11 ">
+
+
+				<div class="row">
+
+                    <div class="col-sm-12 col-md-9">
+						<ol class="breadcrumb">
+						  	<li><a href="/index.php/">Dashboard</a></li>
+						  	<li class="active">Logs</li>
+
+						 
+
+						</ol>
+ 
+							<div class="row">		
+								<div class="col-lg-12">
+									<div class="box">
+										<div class="box"><div class="box-header">
+											<h2>Logs</h2>
+											<div class="box-icon">
+												<a href="<? echo base_url(); ?>index.php/logs/create"><i class="icon-plus"></i></a>
+											</div>
+										</div>
+                                            <? echo $this->session->flashdata('msg'); ?>
+										<div class="box-content">
+                                            <div style="float: right; margin-bottom: 10px">
+                                                <button id="download" class="btn btn-primary" onclick='window.location="<?php echo base_url(); ?>/index.php/logs/create"'>Create Log</button>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <table class="table table-striped table-bordered bootstrap-datatable datatable">
+											  <thead>
+												  <tr>
+													  <th>Title</th>
+													  <th width="14%" class="text-center">Actions</th>
+												  </tr>
+											  </thead>   
+											  <tbody>
+
+											<?
+											foreach( $rows as $c ) :
+											?>
+												<tr>
+													<td><a href="/index.php/logs/edit/"><? echo $c->log_title; ?></a></td>
+
+													<td  class="text-center">
+														<? $cid=$c->insurer_id; ?> 
+														 <a class="btn btn-info" href="<?php echo base_url(); ?>/index.php/logs/edit/<? echo $c->log_id; ?>">
+															<i class="icon-edit "></i>
+														</a>
+
+														<a class="btn btn-danger" href="<?php echo base_url(); ?>index.php/logs/delete/<? echo $c->log_id; ?>" onclick="return confirm('Are you sure to delete..')">
+															<i class="icon-trash "></i>
+														</a>
+
+													</td>
+												</tr>
+											 <?php endforeach;
+                                            for( $r=0;$r<=10;++$r) : ?>
+                                                <tr>
+                                                    <td>&nbsp;
+                                                    <td>&nbsp;
+                                                </tr>
+                                            <?php endfor; ?>
+											  </tbody>
+										  </table>
+										</div>
+									</div>
+
+
+                                    <? include('inc/debug.php') ?>
+
+
+								</div><!--/col-->
+							</div><!--/row-->
+
+
+
+
+
+					</div><!--/col-->
+
+
+				</div><!--/row-->
+                    <div class="col-md-3 visible-md visible-lg" id="feed">
+
+                        <? include('inc/right.blank.php');?>
+
+                    </div><!--/col-->
+
+				</div>
+				<!-- end: Content -->
+				
+				</div><!--/row-->		
+		
+	</div><!--/container-->
+
+	
+	<div class="clearfix"></div>
+
+		
+	<!-- start: JavaScript-->
+	<!--[if !IE]>-->
+
+			<script src="<?php echo base_url(); ?>assets/js/jquery-2.0.3.min.js"></script>
+
+	<!--<![endif]-->
+
+	<!--[if IE]>
+	
+		<script src="<?php echo base_url(); ?>assets/js/jquery-1.10.2.min.js"></script>
+	
+	<![endif]-->
+
+	<!--[if !IE]>-->
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+		</script>
+
+	<!--<![endif]-->
+
+	<!--[if IE]>
+	
+		<script type="text/javascript">
+	 	window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+		</script>
+		
+	<![endif]-->
+	<script src="<?php echo base_url(); ?>assets/js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
+	
+		
+	
+	
+	<!-- page scripts -->
+	<script src="<?php echo base_url(); ?>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/jquery.ui.touch-punch.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/jquery.sparkline.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/fullcalendar.min.js"></script>
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="<?php echo base_url(); ?>assets/js/excanvas.min.js"></script><![endif]-->
+	<script src="<?php echo base_url(); ?>assets/js/jquery.flot.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/jquery.flot.pie.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/jquery.flot.stack.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/jquery.flot.resize.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/jquery.flot.time.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/jquery.autosize.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/jquery.placeholder.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/daterangepicker.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/jquery.easy-pie-chart.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js"></script>
+	
+	<!-- theme scripts -->
+	<script src="<?php echo base_url(); ?>assets/js/custom.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/core.min.js"></script>
+	
+	<!-- inline scripts related to this page -->
+	<script src="<?php echo base_url(); ?>assets/js/pages/index.js"></script>
+	
+	<!-- end: JavaScript-->
+	
+</body>
+</html>
